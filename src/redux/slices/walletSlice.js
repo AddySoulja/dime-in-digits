@@ -6,9 +6,15 @@ export const walletSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log("Incoming in wallet: ", action.payload);
-      const isPresent = state.find((item) => item === action.payload);
-      return isPresent === undefined ? [...state, action.payload] : state;
+      const isPresent = state.find((item) => item.id === action.payload.id);
+      if (isPresent === undefined) {
+        state = [...state, { ...action.payload }];
+      } else {
+        const newArr = state.filter((item) => item.id !== action.payload.id);
+        const obj = { ...isPresent, qty: { ...isPresent }.qty + 1 };
+        state = [...newArr, { ...obj }];
+      }
+      return state;
     },
     removeFromCart: (state, action) =>
       state.filter((item) => item.id !== action.payload),

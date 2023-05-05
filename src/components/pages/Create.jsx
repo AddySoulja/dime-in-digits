@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../common/navbar/Navbar";
-import "../../App.css";
-import BackTopBtn from "../common/backToTop/BackTopBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { myData } from "../product/data";
+import { myData } from "../product/controllers/data";
+import Navbar from "../common/navbar/Navbar";
+import BackTopBtn from "../common/backToTop/BackTopBtn";
 import rupee from "../../assets/images/rupee.png";
 
 const Create = () => {
@@ -25,7 +24,7 @@ const Create = () => {
               }}
             >
               <h2
-                class="headline-md section-title text-center"
+                className="headline-md section-title text-center"
                 id="sellers-label"
                 style={{ marginTop: "0", height: "1.8rem" }}
               >
@@ -33,7 +32,7 @@ const Create = () => {
               </h2>
 
               <div
-                class="discover-card card"
+                className="discover-card card"
                 style={{
                   width: "30%",
                   height: "40%",
@@ -41,7 +40,7 @@ const Create = () => {
                   minHeight: "370px",
                 }}
               >
-                <div class="card-banner img-holder">
+                <div className="card-banner img-holder">
                   <FontAwesomeIcon
                     icon={faAdd}
                     className="img-cover"
@@ -52,33 +51,33 @@ const Create = () => {
                   ></FontAwesomeIcon>
                 </div>
 
-                <div class="card-profile">
+                <div className="card-profile">
                   <img
                     src={myData[5].avatarSrc}
                     width="32"
                     height="32"
                     loading="lazy"
                     alt="StreetBoy profile"
-                    class="img"
+                    className="img"
                   ></img>
 
-                  <a href="/" class="link:hover">
+                  <a href="/" className="link:hover">
                     {/* @{onDisplay.name} */}
                     Username
                   </a>
                 </div>
 
-                <h3 class="title-sm card-title">
-                  <a href="/" class="link:hover">
+                <h3 className="title-sm card-title">
+                  <a href="/" className="link:hover">
                     Title
                   </a>
                 </h3>
 
-                <div class="card-meta">
+                <div className="card-meta">
                   <div>
                     <p>Price</p>
 
-                    <div class="card-price">
+                    <div className="card-price">
                       <img
                         src={rupee}
                         width="16"
@@ -87,14 +86,14 @@ const Create = () => {
                         alt="ethereum icon"
                       ></img>
 
-                      <span class="span">N/A</span>
+                      <span className="span">N/A</span>
                     </div>
                   </div>
 
                   <div>
                     <p>Highest Bid</p>
 
-                    <div class="card-price">
+                    <div className="card-price">
                       <img
                         src={rupee}
                         width="16"
@@ -103,7 +102,7 @@ const Create = () => {
                         alt="ethereum icon"
                       ></img>
 
-                      <span class="span">N/A</span>
+                      <span className="span">N/A</span>
                     </div>
                   </div>
                 </div>

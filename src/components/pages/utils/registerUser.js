@@ -1,6 +1,6 @@
 export const registerUser = async (user) => {
   try {
-    const data = await fetch("/api/register", {
+    const data = await fetch("http://localhost:8081/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown,
+  faArrowUp,
+  faCartPlus,
+  faForward,
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/slices/walletSlice";
 import Navbar from "../common/navbar/Navbar";
 import Footer from "../common/footer/Footer";
 import BackTopBtn from "../common/backToTop/BackTopBtn";
-import rupee from "../../assets/images/rupee.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faForward } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Loading from "../common/Loading";
-import { addToCart } from "../../redux/slices/walletSlice";
+import Card from "../common/Card";
 
 const DisplayItem = () => {
   const [isLoading, setIsLoading] = useState(true);
   const productsInStore = useSelector((state) => state.products);
   const [onDisplay, setOnDisplay] = useState({});
+  const [qty, setQty] = useState(1);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +30,6 @@ const DisplayItem = () => {
       (item) => item.id === parseInt(id)
     );
     if (item !== undefined) {
-      console.log("sel item: ", item);
       setOnDisplay(item);
       setIsLoading(false);
     }
@@ -50,78 +55,47 @@ const DisplayItem = () => {
               {onDisplay.title}
             </h1>
             <div
-              class="discover-card card"
+              className="discover-card card"
               style={{
                 width: "30%",
                 height: "40%",
               }}
             >
-              <div
-                class="card-banner img-holder"
-                style={{ width: "500", height: "500" }}
-              >
-                <img
-                  src={onDisplay.images[0]}
-                  width="500"
-                  height="500"
-                  loading="lazy"
-                  alt={onDisplay.title}
-                  class="img-cover"
-                ></img>
-              </div>
-
-              <div class="card-profile">
-                <img
-                  src={onDisplay.thumbnail}
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  alt={onDisplay.brand}
-                  class="img"
-                ></img>
-                <h3 class="title-sm card-title link:hover">
-                  {`${onDisplay.title}`}
-                </h3>
-              </div>
-              <br />
-              <div class="card-meta">
-                <div>
-                  <p>Price</p>
-
-                  <div class="card-price">
-                    <img
-                      src={rupee}
-                      width="16"
-                      height="24"
-                      loading="lazy"
-                      alt="ethereum icon"
-                    ></img>
-
-                    <span class="span">{onDisplay.price}</span>
-                  </div>
-                </div>
-
-                <div>
-                  <p>Discount</p>
-                  <div class="card-price">
-                    <span class="span">{onDisplay.discountPercentage} %</span>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="link:hover">{onDisplay.description}</div>
+              <Card item={onDisplay} />
             </div>
+            <br />
             <div className="input-bid-block">
-              <progress
-                max="5"
-                value={onDisplay.rating}
-                style={{ width: "60%", height: "8vh" }}
-              ></progress>
+              <div>
+                <button
+                  onClick={() => {
+                    if (qty >= 10) {
+                      setQty(10);
+                      return;
+                    }
+                    setQty(qty + 1);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowUp}></FontAwesomeIcon>
+                </button>
+                <div style={{ color: "white" }}>Qty: {qty}</div>
+                <button
+                  onClick={() => {
+                    if (qty <= 1) {
+                      setQty(1);
+                      return;
+                    }
+                    setQty(qty - 1);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowDown}></FontAwesomeIcon>
+                </button>
+              </div>
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 style={{ marginRight: "8px", width: "50%" }}
                 onClick={() => {
-                  dispatch(addToCart({ ...onDisplay }));
+                  dispatch(addToCart({ ...onDisplay, qty }));
+                  navigate("/wallet");
                   // dispatch(itemAdded());
                   // dispatch({ type: "item-added" });
                 }}
@@ -136,10 +110,10 @@ const DisplayItem = () => {
             </div>
             <br />
             <button
-              class="btn-link link:hover"
+              className="btn-link link:hover"
               onClick={() => navigate("/explore")}
             >
-              <span class="span">Explore More</span>
+              <span className="span">Explore More</span>
               <FontAwesomeIcon
                 icon={faForward}
                 name="arrow-forward"

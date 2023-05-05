@@ -8,18 +8,19 @@ import BackTopBtn from "../common/backToTop/BackTopBtn";
 import Footer from "../common/footer/Footer";
 import Carousel from "../product/Carousel";
 import Loading from "../common/Loading";
-import "../../App.css";
 
 const Dashboard = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [user] = useState(useSelector((state) => state.user));
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (user.email === null) {
-      navigate("/login");
-    }
-    setIsLoading(false);
-  }, [navigate, user.email]);
+  const [isLoading, setIsLoading] = useState(false);
+  // const [user] = useState(useSelector((state) => state.user));
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (user.email === null) {
+  //     navigate("/login");
+  //   }
+  //   setIsLoading(false);
+  // }, [navigate, user.email]);
+
   return isLoading ? (
     <Loading />
   ) : (

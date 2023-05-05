@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "./utils/registerUser";
 import BackTopBtn from "../common/backToTop/BackTopBtn";
 import Navbar from "../common/navbar/Navbar";
 import Loading from "../common/Loading";
-import { useNavigate } from "react-router-dom";
-import { registerUser } from "./utils/registerUser";
 
 const userSchema = {
   username: "",
@@ -13,16 +13,16 @@ const userSchema = {
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(userSchema);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const profile = await registerUser(user);
-    if (profile.ok) {
-      navigate("/login");
-    }
-    setIsLoading(false);
+    // setIsLoading(true);
+    // const profile = await registerUser(user);
+    // if (profile.ok) {
+    //   navigate("/login");
+    // }
+    // setIsLoading(false);
   };
 
   return isLoading ? (

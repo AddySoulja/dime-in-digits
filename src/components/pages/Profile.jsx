@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { myData } from "../product/data";
+import { myData } from "../product/controllers/data";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackTopBtn from "../common/backToTop/BackTopBtn";
 import Navbar from "../common/navbar/Navbar";
 import Collection from "../product/Collection";
 import Loading from "../common/Loading";
+import Card from "../common/Card";
 
 const Profile = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const cart = useSelector((state) => state.wallet);
+  const [isLoading, setIsLoading] = useState(false);
   const [user] = useState(useSelector((state) => state.user));
-  const navigate = useNavigate();
+  const [wallet, setWallet] = useState([]);
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.email === null) {
-      navigate("/login");
-    }
+    setIsLoading(true);
+    setWallet(cart);
     setIsLoading(false);
-  }, [navigate, user]);
+  }, [cart]);
+
+  // useEffect(() => {
+  //   if (user.email === null) {
+  //     navigate("/login");
+  //   }
+  //   setIsLoading(false);
+  // }, [navigate, user]);
 
   return isLoading ? (
     <Loading />
@@ -105,7 +114,16 @@ const Profile = () => {
                 </h2>
 
                 <ul className="grid-list">
-                  <Collection />
+                  {wallet.map((item) => (
+                    <Link
+                      to={`/explore/${item.id}`}
+                      key={`${Math.random() * 10}${item.id}`}
+                    >
+                      <li key={`itemb${item.id}`}>
+                        <Card item={item} />
+                      </li>
+                    </Link>
+                  ))}
                 </ul>
               </div>
             </section>

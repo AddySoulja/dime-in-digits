@@ -5,7 +5,6 @@ import BackTopBtn from "../common/backToTop/BackTopBtn";
 import Collection from "../product/Collection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faForward } from "@fortawesome/free-solid-svg-icons";
-import "../../App.css";
 
 const Explore = () => {
   return (
@@ -13,22 +12,25 @@ const Explore = () => {
       <Navbar />
       <main>
         <article>
-          <section class="section discover" aria-labelledby="discover-label">
-            <div class="container">
+          <section
+            className="section discover"
+            aria-labelledby="discover-label"
+          >
+            <div className="container">
               <h2
-                class="headline-md section-title text-center"
+                className="headline-md section-title text-center"
                 id="discover-label"
                 style={{ marginTop: "5rem", height: "1.8rem" }}
               >
                 Discover Collection
               </h2>
 
-              <ul class="grid-list">
+              <ul className="grid-list">
                 <Collection />
               </ul>
 
-              <button class="btn-link link:hover">
-                <span class="span">Explore More</span>
+              <button className="btn-link link:hover">
+                <span className="span">Explore More</span>
                 <FontAwesomeIcon
                   icon={faForward}
                   name="arrow-forward"

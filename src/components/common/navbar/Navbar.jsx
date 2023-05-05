@@ -10,7 +10,6 @@ import {
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../../assets/images/logo.png";
-import "../../../App.css";
 
 const Navbar = () => {
   const [user] = useState(useSelector((state) => state.user));
@@ -64,7 +63,9 @@ const Navbar = () => {
                 Login
               </Link>
             </li>
-            {user.email !== null ? (
+
+            {/* {user.email !== null  */}
+            {true ? (
               <>
                 <li>
                   <Link

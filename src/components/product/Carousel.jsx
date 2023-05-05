@@ -5,7 +5,7 @@ import {
   faForward,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { myData } from "./data";
+import { myData } from "./controllers/data";
 import { Link, useNavigate } from "react-router-dom";
 const Collection = () => {
   const navigate = useNavigate();
@@ -17,9 +17,13 @@ const Collection = () => {
   const [sliderStyle, setSliderStyle] = useState({
     transform: "",
   });
+
   const setCurrentSlide = useCallback(() => {
-    if (currSlidePos.start > myData.length - 1) {
-      setCurrSlidePos({ start: 0, end: 4 });
+    if (currSlidePos.start > 4) {
+      setCurrSlidePos({
+        start: currSlidePos.start + 1,
+        end: currSlidePos.end + 1,
+      });
     } else if (currSlidePos.start < 0) {
       setCurrSlidePos({ start: myData.length - 4, end: myData.length });
     }
@@ -28,6 +32,7 @@ const Collection = () => {
   }, [currSlidePos]);
 
   useEffect(() => {
+    console.log("Curr slide positions: ", currSlidePos);
     setCurrentSlide();
   }, [setCurrentSlide]);
 

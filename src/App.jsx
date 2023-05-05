@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Dashboard from "./components/pages/Dashboard";
 import Explore from "./components/pages/Explore";
 import Wallet from "./components/pages/Wallet";
@@ -9,6 +8,7 @@ import Create from "./components/pages/Create";
 import Profile from "./components/pages/Profile";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
+import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

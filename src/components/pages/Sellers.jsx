@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../common/footer/Footer";
 import Navbar from "../common/navbar/Navbar";
-import "../../App.css";
 import BackTopBtn from "../common/backToTop/BackTopBtn";
 import Creators from "../product/Creators";
 

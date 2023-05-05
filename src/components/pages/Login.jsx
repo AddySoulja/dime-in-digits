@@ -10,20 +10,20 @@ import Loading from "../common/Loading";
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const profile = await loginUser(user);
-    const ac = await profile.json();
-    if (ac.ok) {
-      dispatch(logInUser(ac.user));
-      setIsLoading(false);
-      navigate("/");
-    }
-    setIsLoading(false);
+    // e.preventDefault();
+    // setIsLoading(true);
+    // const profile = await loginUser(user);
+    // const ac = await profile.json();
+    // if (ac.ok) {
+    //   dispatch(logInUser(ac.user));
+    //   setIsLoading(false);
+    //   navigate("/");
+    // }
+    // setIsLoading(false);
   };
 
   return isLoading ? (
