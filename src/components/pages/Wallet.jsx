@@ -140,7 +140,8 @@ const Wallet = () => {
               ) : (
                 <>
                   <h1>Empty Wallet !</h1>
-                  <Loading />
+                  {/* <Loading /> */}
+                  <h2>Explore items and add to cart!</h2>
                 </>
               )}
               <Link to="/explore" className="btn-link link:hover">
